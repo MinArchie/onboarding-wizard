@@ -17,7 +17,6 @@
   }
 }
 
-// Responsive adjustments
 @media (max-width: 768px) {
   .progress-container {
     .step-indicator {

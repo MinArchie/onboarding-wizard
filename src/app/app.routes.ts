@@ -15,12 +15,12 @@ export const routes: Routes = [
     component: DashboardComponent,
     canActivate: [OnboardingGuard]
   },
-  { path: '**', redirectTo: '/onboarding/step/1' } // Wildcard route
+  { path: '**', redirectTo: '/onboarding/step/1' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    enableTracing: false, // Set to true for debugging
+    enableTracing: false,
     scrollPositionRestoration: 'top'
   })],
   exports: [RouterModule]

@@ -1,4 +1,3 @@
-// src/app/components/onboarding/steps/personal-info/personal-info.component.ts
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';

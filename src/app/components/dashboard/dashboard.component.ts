@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { OnboardingService } from '../../services/onboarding.service';
 import { UserData } from '../../models/user.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  imports: [CommonModule]
 })
 export class DashboardComponent implements OnInit {
   userData: Partial<UserData> = {};
   
-  // Mock dashboard data
   teamMembers = 12;
   activeProjects = 8;
   notifications = 5;

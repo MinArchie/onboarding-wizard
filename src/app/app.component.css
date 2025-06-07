@@ -7,7 +7,6 @@
   }
 }
 
-// Loading spinner styles
 .animate-spin {
   animation: spin 1s linear infinite;
 }

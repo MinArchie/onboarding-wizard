@@ -16,7 +16,6 @@ export class OnboardingGuard implements CanActivate {
     const isCompleted = this.onboardingService.isOnboardingCompleted();
     
     if (!isCompleted) {
-      // Redirect to first step of onboarding if not completed
       return this.router.createUrlTree(['/onboarding/step/1']);
     }
     

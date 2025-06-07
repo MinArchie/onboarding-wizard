@@ -120,7 +120,6 @@ export class OnboardingService {
         const data = JSON.parse(saved);
         this.userDataSubject.next(data);
         
-        // Update completed steps based on saved data
         this.updateCompletedStepsFromData(data);
       }
     } catch (error) {

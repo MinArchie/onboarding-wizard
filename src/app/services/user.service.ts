@@ -7,13 +7,11 @@ import { DashboardStats, ProgressData } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'https://api.example.com'; // Replace with your actual API URL
+  private apiUrl = 'https://api.example.com';
 
   constructor(private http: HttpClient) {}
 
-  // Mock API calls - replace with real API endpoints
   getDashboardStats(): Observable<DashboardStats> {
-    // Mock data - replace with actual API call
     const mockStats: DashboardStats = {
       teamMembers: Math.floor(Math.random() * 50) + 5,
       activeProjects: Math.floor(Math.random() * 20) + 3,
@@ -25,7 +23,6 @@ export class UserService {
   }
 
   getWeeklyProgress(): Observable<ProgressData[]> {
-    // Mock data - replace with actual API call
     const mockData: ProgressData[] = [
       { day: 'Mon', progress: Math.floor(Math.random() * 40) + 20 },
       { day: 'Tue', progress: Math.floor(Math.random() * 40) + 30 },
@@ -41,14 +38,12 @@ export class UserService {
   }
 
   saveUserProfile(userData: any): Observable<any> {
-    // Mock API call - replace with actual API endpoint
     console.log('Saving user profile:', userData);
     return of({ success: true, message: 'Profile saved successfully' });
     // return this.http.post(`${this.apiUrl}/user/profile`, userData);
   }
 
   updateUserPreferences(preferences: any): Observable<any> {
-    // Mock API call - replace with actual API endpoint
     console.log('Updating user preferences:', preferences);
     return of({ success: true, message: 'Preferences updated successfully' });
     // return this.http.put(`${this.apiUrl}/user/preferences`, preferences);
