@@ -1,0 +1,20 @@
+<div class="step-container">
+  <label>
+    Theme
+    <select formControlName="theme">
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>
+
+  <label>
+    Dashboard Layout
+    <select formControlName="dashboardLayout">
+      <option value="cards">Cards</option>
+      <option value="list">List</option>
+    </select>
+  </label>
+
+  <button (click)="goBack()">Back</button>
+  <button (click)="submit()">Submit</button>
+</div>

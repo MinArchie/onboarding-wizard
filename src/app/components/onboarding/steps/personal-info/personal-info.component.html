@@ -1,0 +1,21 @@
+<div class="step-container">
+  <label>
+    Name
+    <input formControlName="name" type="text" placeholder="Your full name" />
+  </label>
+  <div *ngIf="form.controls['name'].touched && form.controls['name'].invalid" class="error">
+    <small *ngIf="form.controls['name'].errors?.['required']">Name is required.</small>
+    <small *ngIf="form.controls['name'].errors?.['minlength']">Name must be at least 2 characters.</small>
+  </div>
+
+  <label>
+    Email
+    <input formControlName="email" type="email" placeholder="your@email.com" />
+  </label>
+  <div *ngIf="form.controls['email'].touched && form.controls['email'].invalid" class="error">
+    <small *ngIf="form.controls['email'].errors?.['required']">Email is required.</small>
+    <small *ngIf="form.controls['email'].errors?.['email']">Email must be valid.</small>
+  </div>
+
+  <button (click)="submit()">Next</button>
+</div>

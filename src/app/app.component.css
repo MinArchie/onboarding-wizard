@@ -1,0 +1,22 @@
+.app-container {
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  
+  &.loading {
+    overflow: hidden;
+  }
+}
+
+// Loading spinner styles
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

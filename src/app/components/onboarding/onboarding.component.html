@@ -1,0 +1,195 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+  <div class="max-w-2xl mx-auto">
+    <!-- Progress Bar -->
+    <div class="mb-8">
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-3xl font-bold text-gray-900">Get Started</h1>
+        <span class="text-sm text-gray-600">Step {{ currentStep }} of 3</span>
+      </div>
+      
+      <div class="w-full bg-gray-200 rounded-full h-2">
+        <div 
+          class="bg-blue-600 h-2 rounded-full transition-all duration-300"
+          [style.width.%]="(currentStep / 3) * 100">
+        </div>
+      </div>
+      
+      <div class="flex justify-between mt-4">
+        <div *ngFor="let step of steps; let i = index" 
+             class="flex items-center"
+             [class.text-blue-600]="step.isCompleted || currentStep === step.id"
+             [class.text-gray-400]="!step.isCompleted && currentStep !== step.id">
+          <div class="w-8 h-8 rounded-full border-2 flex items-center justify-center mr-2"
+               [class.bg-blue-600]="step.isCompleted"
+               [class.border-blue-600]="step.isCompleted || currentStep === step.id"
+               [class.border-gray-300]="!step.isCompleted && currentStep !== step.id">
+            <svg *ngIf="step.isCompleted" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span *ngIf="!step.isCompleted" class="text-sm font-medium">{{ step.id }}</span>
+          </div>
+          <div class="hidden sm:block">
+            <p class="font-medium">{{ step.title }}</p>
+            <p class="text-sm">{{ step.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-xl shadow-lg p-8">
+      <form [formGroup]="form" (ngSubmit)="nextStep()">
+        
+        <!-- Step 1: Personal Info -->
+        <div *ngIf="currentStep === 1">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Personal Information</h2>
+          
+          <div class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+              <input 
+                type="text" 
+                formControlName="name"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter your full name">
+              <p *ngIf="getFieldError('name')" class="mt-1 text-sm text-red-600">{{ getFieldError('name') }}</p>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <input 
+                type="email" 
+                formControlName="email"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter your email address">
+              <p *ngIf="getFieldError('email')" class="mt-1 text-sm text-red-600">{{ getFieldError('email') }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Business Info -->
+        <div *ngIf="currentStep === 2">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Business Information</h2>
+          
+          <div class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+              <input 
+                type="text" 
+                formControlName="companyName"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Enter your company name">
+              <p *ngIf="getFieldError('companyName')" class="mt-1 text-sm text-red-600">{{ getFieldError('companyName') }}</p>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Industry</label>
+              <select 
+                formControlName="industry"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="">Select your industry</option>
+                <option value="technology">Technology</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="finance">Finance</option>
+                <option value="education">Education</option>
+                <option value="retail">Retail</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="other">Other</option>
+              </select>
+              <p *ngIf="getFieldError('industry')" class="mt-1 text-sm text-red-600">{{ getFieldError('industry') }}</p>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Company Size</label>
+              <select 
+                formControlName="companySize"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <option value="">Select company size</option>
+                <option value="1-10">1-10 employees</option>
+                <option value="11-50">11-50 employees</option>
+                <option value="51-200">51-200 employees</option>
+                <option value="201-1000">201-1000 employees</option>
+                <option value="1000+">1000+ employees</option>
+              </select>
+              <p *ngIf="getFieldError('companySize')" class="mt-1 text-sm text-red-600">{{ getFieldError('companySize') }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Preferences -->
+        <div *ngIf="currentStep === 3">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Customize Your Experience</h2>
+          
+          <div class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-4">Preferred Theme</label>
+              <div class="grid grid-cols-2 gap-4">
+                <label class="flex items-center p-4 border-2 rounded-lg cursor-pointer"
+                       [class.border-blue-500]="form.get('theme')?.value === 'light'"
+                       [class.bg-blue-50]="form.get('theme')?.value === 'light'">
+                  <input type="radio" formControlName="theme" value="light" class="sr-only">
+                  <div class="flex-1">
+                    <p class="font-medium">Light Theme</p>
+                    <p class="text-sm text-gray-500">Clean and bright interface</p>
+                  </div>
+                </label>
+                <label class="flex items-center p-4 border-2 rounded-lg cursor-pointer"
+                       [class.border-blue-500]="form.get('theme')?.value === 'dark'"
+                       [class.bg-blue-50]="form.get('theme')?.value === 'dark'">
+                  <input type="radio" formControlName="theme" value="dark" class="sr-only">
+                  <div class="flex-1">
+                    <p class="font-medium">Dark Theme</p>
+                    <p class="text-sm text-gray-500">Easy on the eyes</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-4">Dashboard Layout</label>
+              <div class="grid grid-cols-2 gap-4">
+                <label class="flex items-center p-4 border-2 rounded-lg cursor-pointer"
+                       [class.border-blue-500]="form.get('dashboardLayout')?.value === 'cards'"
+                       [class.bg-blue-50]="form.get('dashboardLayout')?.value === 'cards'">
+                  <input type="radio" formControlName="dashboardLayout" value="cards" class="sr-only">
+                  <div class="flex-1">
+                    <p class="font-medium">Card Layout</p>
+                    <p class="text-sm text-gray-500">Visual cards with icons</p>
+                  </div>
+                </label>
+                <label class="flex items-center p-4 border-2 rounded-lg cursor-pointer"
+                       [class.border-blue-500]="form.get('dashboardLayout')?.value === 'list'"
+                       [class.bg-blue-50]="form.get('dashboardLayout')?.value === 'list'">
+                  <input type="radio" formControlName="dashboardLayout" value="list" class="sr-only">
+                  <div class="flex-1">
+                    <p class="font-medium">List Layout</p>
+                    <p class="text-sm text-gray-500">Compact list view</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between mt-8 pt-6 border-t border-gray-200">
+          <button 
+            type="button"
+            *ngIf="currentStep > 1"
+            (click)="previousStep()"
+            class="px-6 py-3 text-gray-600 hover:text-gray-800 font-medium transition-colors">
+            ← Previous
+          </button>
+          <div></div>
+          
+          <button 
+            type="submit"
+            class="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+            [disabled]="form.invalid">
+            {{ currentStep === 3 ? 'Complete Setup' : 'Next →' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

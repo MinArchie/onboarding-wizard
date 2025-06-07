@@ -1,0 +1,33 @@
+<div class="step-container">
+  <label>
+    Company Name
+    <input formControlName="companyName" type="text" placeholder="Company Inc." />
+  </label>
+  <div *ngIf="form.controls['companyName'].touched && form.controls['companyName'].invalid" class="error">
+    <small>Company name is required.</small>
+  </div>
+
+  <label>
+    Industry
+    <input formControlName="industry" type="text" placeholder="Industry type" />
+  </label>
+  <div *ngIf="form.controls['industry'].touched && form.controls['industry'].invalid" class="error">
+    <small>Industry is required.</small>
+  </div>
+
+  <label>
+    Company Size
+    <select formControlName="companySize">
+      <option value="" disabled>Select size</option>
+      <option value="small">Small (1-50)</option>
+      <option value="medium">Medium (51-250)</option>
+      <option value="large">Large (251+)</option>
+    </select>
+  </label>
+  <div *ngIf="form.controls['companySize'].touched && form.controls['companySize'].invalid" class="error">
+    <small>Company size is required.</small>
+  </div>
+
+  <button (click)="goBack()">Back</button>
+  <button (click)="submit()">Next</button>
+</div>

@@ -1,0 +1,30 @@
+.progress-container {
+  .step-indicator {
+    transition: all 0.3s ease;
+    
+    &.completed {
+      transform: scale(1.02);
+    }
+    
+    &.active {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .progress-container {
+    .step-indicator {
+      &.active,
+      &.completed {
+        transform: none;
+      }
+    }
+  }
+}
